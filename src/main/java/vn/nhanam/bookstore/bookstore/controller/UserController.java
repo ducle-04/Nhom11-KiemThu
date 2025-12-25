@@ -6,6 +6,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import vn.nhanam.bookstore.bookstore.dto.UpdateProfileDTO;
 import vn.nhanam.bookstore.bookstore.dto.UserDTO;
 import vn.nhanam.bookstore.bookstore.service.UserService;
 
@@ -33,7 +34,7 @@ public class UserController {
     @PutMapping("/me")
     public ResponseEntity<UserDTO> updateMyProfile(
             Authentication authentication,
-            @Valid @RequestBody UserDTO dto
+            @Valid @RequestBody UpdateProfileDTO dto
     ) {
         String email = authentication.getName();
         UserDTO updated = userService.updateOwnProfile(email, dto);

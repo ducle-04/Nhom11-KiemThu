@@ -2,6 +2,7 @@ package vn.nhanam.bookstore.bookstore.service;
 
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import vn.nhanam.bookstore.bookstore.dto.RegisterDTO;
+import vn.nhanam.bookstore.bookstore.dto.UpdateProfileDTO;
 import vn.nhanam.bookstore.bookstore.dto.UserDTO;
 import vn.nhanam.bookstore.bookstore.entity.Role;
 import vn.nhanam.bookstore.bookstore.entity.User;
@@ -110,7 +111,7 @@ public class UserService {
 
     // 6. Người dùng tự cập nhật hồ sơ
     @Transactional
-    public UserDTO updateOwnProfile(String email, UserDTO dto) {
+    public UserDTO updateOwnProfile(String email, UpdateProfileDTO dto) {
 
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User không tồn tại"));
@@ -121,6 +122,7 @@ public class UserService {
 
         return toUserDTO(userRepository.save(user));
     }
+
 
     // 7. Chuyển User sang UserDTO
     private UserDTO toUserDTO(User user) {

@@ -115,12 +115,6 @@ public class UserService {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User không tồn tại"));
 
-        if (!user.getEmail().equals(dto.getEmail())
-                && userRepository.existsByEmail(dto.getEmail())) {
-            throw new RuntimeException("Email đã được sử dụng");
-        }
-
-        user.setEmail(dto.getEmail());
         user.setFirstName(dto.getFirstName());
         user.setLastName(dto.getLastName());
         user.setPhoneNumber(dto.getPhoneNumber());
